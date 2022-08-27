@@ -1,13 +1,6 @@
-// Pseudocode
-// ask user for input (rock, scissors or paper)
-// get random choice from computer (rock, scissors or paper)
-// compare the user's and computer's choice 
-// play 5 games and console.log each game's result 
-// at the end of 5 games, console.log the winner 
-
 const choices = ['Rock', 'Paper', 'Scissors'];
-const userChoice = 'Paper';
 
+// get random choice from computer (rock, scissors or paper)
 function getComputerChoice() {
     return choices[getRandomNumber(choices.length)];
 }
@@ -17,6 +10,7 @@ function getRandomNumber(num) {
     return Math.floor(Math.random() * num);
 }
 
+// ask user for input (rock, scissors or paper)
 function getPlayerChoice() {
     let userInput;
     do {
@@ -25,6 +19,7 @@ function getPlayerChoice() {
     return userInput.charAt(0).toUpperCase() + userInput.substring(1);
 }
 
+// Determine the outcome of round between user's and computer's choice 
 function playRound(playerSelection, computerSelection) {
     switch (true) {
         case playerSelection === computerSelection:
@@ -42,11 +37,13 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
+// play 5 games and console.log each game's result 
+// at the end of 5 games, console.log the winner 
 function game() {
     let userWin = 0;
     let computerWin = 0;
     for (let i = 0; i < 5; i++) {
-        let result = playRound(userChoice, getComputerChoice());
+        let result = playRound(getPlayerChoice(), getComputerChoice());
         if (result.charAt(4) === 'l') {
             computerWin += 1;
         } else if (result.charAt(4) === 'w') {
@@ -55,7 +52,6 @@ function game() {
         console.log(result);
     }
     printOverallScore(userWin, computerWin);
-
 }
 
 function printOverallScore(userWin, computerWin) {
