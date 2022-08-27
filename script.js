@@ -19,11 +19,10 @@ function getRandomNumber(num) {
 
 function getPlayerChoice() {
     let userInput;
-    userInput = prompt("Choose Rock, Paper or Scissors");
-    while (userInput.toLowerCase() !== 'rock' || userInput.toLowerCase() !== 'paper' || userInput.toLowerCase() !== 'scissors') {
-        getPlayerChoice();
-    }
-    return userInput.charAt(0).toUpperCase() + userInput.substring(1).toLowerCase();
+    do {
+        userInput = prompt("Choose Rock, Paper or Scissors").toLowerCase();
+    } while ((userInput !== 'rock') && (userInput !== 'paper') && (userInput !== 'scissors'));
+    return userInput.charAt(0).toUpperCase() + userInput.substring(1);
 }
 
 function playRound(playerSelection, computerSelection) {
