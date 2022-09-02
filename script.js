@@ -69,6 +69,8 @@ function printOverallScore(userWin, computerWin) {
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
-        console.log(playRound(e.target.id, getComputerChoice()))
+        let result = playRound(e.target.id, getComputerChoice());
+        document.getElementById("result").textContent = result;
+        
     });
 });
