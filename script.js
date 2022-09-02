@@ -64,13 +64,39 @@ function printOverallScore(userWin, computerWin) {
     }
 }
 
+// Returns winner (computer or user) based on the string given
+// Returns tie if the result is a tie
+function getWinner(result) {
+    if (result.charAt(4) === 'l') {
+        return "computer";
+    } else if (result.charAt(4) === 'w') {
+        return "user";
+    } else {
+        return "tie";
+    }
+}
+
+function updateScore(winner) {
+    let container;
+    if (winner == "computer") {
+        container = document.querySelector("#com-score");
+    } else if (winner == "user") {
+        container = document.querySelector("#user-score");
+    } else {
+        return;
+    }   
+    let currentScore = parseInt(container.textContent);
+    container.textContent = currentScore + 1;
+}
+
 // Event listener for the 3 buttons
 // Plays round depending on which button user chooses
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
         let result = playRound(e.target.id, getComputerChoice());
-        document.getElementById("result").textContent = result;
-        
+        let winner = getWinner(result);
+        updateScore(winner);
+        document.getElementById("result").textContent = result;       
     });
 });
