@@ -1,5 +1,5 @@
 body {
-    background-color: snow;
+    background-color: #E4FDE1;
     margin: 0;
     display: flexbox;
     flex-direction: column;
@@ -10,9 +10,8 @@ div {
 }
 
 .header {
-    background-color: blanchedalmond;
+    background-color: #DAFFEF;
     color: red;
-    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,8 +24,14 @@ div {
 
 .game {
     display: flex;
-    height: 400px;
     justify-content: space-around;
+}
+
+.user-game,
+.com-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
 #user-header,
@@ -36,8 +41,45 @@ div {
     color: #3f3f3f;
 }
 
-.user-image,
-.com-image {
-    border: 2px solid firebrick;
-    height: 200px;
+.img-container {
+    padding: 0;
+    border: 10px solid firebrick;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    border-bottom: 4px solid black;
+}
+
+#user-score,
+#com-score {
+    border: 5px solid firebrick;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 8px;
+    background-color: bisque;
+}
+
+#result {
+    width: 300px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #4DAA57;
+}
+
+.options {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+button {
+    height: 50px;
+    width: 200px;
+    text-align: center;
 }
