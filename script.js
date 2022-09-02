@@ -63,3 +63,12 @@ function printOverallScore(userWin, computerWin) {
         console.log(`It's a tie with a score of ${userWin} : ${computerWin}`);
     }
 }
+
+// Event listener for the 3 buttons
+// Plays round depending on which button user chooses
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        console.log(playRound(e.target.id, getComputerChoice()))
+    });
+});
