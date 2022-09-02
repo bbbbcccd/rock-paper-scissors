@@ -6,9 +6,7 @@ body {
 }
 
 div {
-    margin: 0;
     margin-bottom: 8px;
-    border: 2px solid black;
 }
 
 .header {
@@ -23,4 +21,23 @@ div {
 .header p {
     font-size: 64px;
     font-weight: 900;
+}
+
+.game {
+    display: flex;
+    height: 400px;
+    justify-content: space-around;
+}
+
+#user-header,
+#com-header {
+    font-size: 32px;
+    font-weight: 700;
+    color: #3f3f3f;
+}
+
+.user-image,
+.com-image {
+    border: 2px solid firebrick;
+    height: 200px;
 }
