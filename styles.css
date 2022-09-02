@@ -1,0 +1,26 @@
+body {
+    background-color: snow;
+    margin: 0;
+    display: flexbox;
+    flex-direction: column;
+}
+
+div {
+    margin: 0;
+    margin-bottom: 8px;
+    border: 2px solid black;
+}
+
+.header {
+    background-color: blanchedalmond;
+    color: red;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header p {
+    font-size: 64px;
+    font-weight: 900;
+}
