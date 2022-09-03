@@ -78,8 +78,66 @@ div {
     gap: 40px;
 }
 
-button {
+.options button {
     height: 50px;
     width: 200px;
     text-align: center;
+}
+
+.modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    z-index: 1;
+}
+
+.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    height: 70%;
+    width: 30%;
+    background-color: white;
+    padding: 8px;
+    border: 2px solid firebrick;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-button {
+    font-size: 32px;
+    font-weight: 700;
+    color: #aaa;
+    background-color: white;
+    padding: 4px;
+    border: none;
+}
+
+.modal-result {
+    flex: 1 1 0;
+    text-align: center;
+    padding-top: 30%;
+    font-size: 64px;
+}
+
+.reset {
+    font-size: 24px;
+    font-weight: 900;
+    padding: 8px;
+    background-color: yellow;
+    color: red;
+    border-radius: 10px;
 }
