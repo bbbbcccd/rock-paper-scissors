@@ -106,10 +106,10 @@ function resetGame() {
 // Checks if game is over (user or computer reached 5 points)
 // Activates modal if the game is over
 function gameOver() {
-    const userScore = document.getElementById('user-score').textContent;
-    const computerScore = document.getElementById('com-score').textContent;
+    const userScore = parseInt(document.getElementById('user-score').textContent);
+    const computerScore = parseInt(document.getElementById('com-score').textContent);
 
-    if (userScore === "5" || computerScore === "5") {
+    if (userScore >= 5 || computerScore >= 5) {
         const modal = document.querySelector('.modal');
         const modalResult = document.querySelector('.modal-result');
         modal.classList.add('active');
