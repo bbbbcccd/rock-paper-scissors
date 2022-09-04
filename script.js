@@ -50,6 +50,7 @@ function getWinner(result) {
     }
 }
 
+// Update score after round is played
 function updateScore(result) {
     const winner = getWinner(result);
     let container;
@@ -97,7 +98,7 @@ function updateRoundResult(result) {
 }
 
 
-//Game is over when either user or computer reaches 5 points
+// Checks if game is over (user or computer reached 5 points)
 // Activates modal if the game is over
 function gameOver() {
     const userScore = document.getElementById('user-score').textContent;
