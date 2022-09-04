@@ -97,6 +97,11 @@ function updateRoundResult(result) {
     document.getElementById("result").textContent = result;
 }
 
+function resetGame() {
+    document.getElementById('user-score').textContent = 0;
+    document.getElementById('com-score').textContent = 0;
+    updateRoundResult("");
+}
 
 // Checks if game is over (user or computer reached 5 points)
 // Activates modal if the game is over
@@ -133,4 +138,10 @@ rpsButtons.forEach(button => {
 const modalCloseButton = document.querySelector(".modal .close-button");
 modalCloseButton.addEventListener("click", () => {
     document.querySelector('.modal').classList.remove("active");
+});
+
+const playAgainButton = document.querySelector(".modal .reset");
+playAgainButton.addEventListener("click", () => {
+    document.querySelector('.modal').classList.remove("active");
+    resetGame();
 });
