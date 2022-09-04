@@ -108,7 +108,7 @@ function gameOver() {
         const modal = document.querySelector('.modal');
         const modalResult = document.querySelector('.modal-result');
         modal.classList.add('active');
-        modalResult.innerHTML = getOverallResult(userScore, computerScore)
+        modalResult.innerHTML = getOverallResult(userScore, computerScore);
     }
 }
 
@@ -128,4 +128,9 @@ rpsButtons.forEach(button => {
 
         gameOver();
     })
+});
+
+const modalCloseButton = document.querySelector(".modal .close-button");
+modalCloseButton.addEventListener("click", () => {
+    document.querySelector('.modal').classList.remove("active");
 });
