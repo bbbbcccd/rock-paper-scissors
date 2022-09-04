@@ -10,15 +10,6 @@ function getRandomNumber(num) {
     return Math.floor(Math.random() * num);
 }
 
-// ask user for input (rock, scissors or paper)
-function getPlayerChoice() {
-    let userInput;
-    do {
-        userInput = prompt("Choose Rock, Paper or Scissors").toLowerCase();
-    } while ((userInput !== 'rock') && (userInput !== 'paper') && (userInput !== 'scissors'));
-    return userInput.charAt(0).toUpperCase() + userInput.substring(1);
-}
-
 // Determine the outcome of round between user's and computer's choice 
 function playRound(playerSelection, computerSelection) {
     switch (true) {
@@ -37,30 +28,13 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
-// play 5 games and console.log each game's result 
-// at the end of 5 games, console.log the winner 
-function game() {
-    let userWin = 0;
-    let computerWin = 0;
-    for (let i = 0; i < 5; i++) {
-        let result = playRound(getPlayerChoice(), getComputerChoice());
-        if (result.charAt(4) === 'l') {
-            computerWin += 1;
-        } else if (result.charAt(4) === 'w') {
-            userWin += 1;
-        }
-        console.log(result);
-    }
-    printOverallScore(userWin, computerWin);
-}
-
-function printOverallScore(userWin, computerWin) {
+function getOverallResult(userWin, computerWin) {
     if (userWin > computerWin) {
-        console.log(`You won with a score of ${userWin} : ${computerWin}`);
+        return `You won with a score of <div>${userWin} : ${computerWin}</p>`;
     } else if (userWin < computerWin) {
-        console.log(`You lost with a score of ${userWin} : ${computerWin}`);
+        return `You lost with a score of <div>${userWin} : ${computerWin}</div>`;
     } else {
-        console.log(`It's a tie with a score of ${userWin} : ${computerWin}`);
+        return false;
     }
 }
 
@@ -88,15 +62,24 @@ function updateScore(winner) {
     let currentScore = parseInt(container.textContent);
     container.textContent = currentScore + 1;
 }
-
+ 
 // Event listener for the 3 buttons
 // Plays round depending on which button user chooses
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => {
+const rpsButtons = document.querySelectorAll('.options button');
+const userScore = document.getElementById('user-score');
+const computerScore = document.getElementById('com-score');
+rpsButtons.forEach(button => {
     button.addEventListener("click", (e) => {
         let result = playRound(e.target.id, getComputerChoice());
         let winner = getWinner(result);
         updateScore(winner);
-        document.getElementById("result").textContent = result;       
+        document.getElementById("result").textContent = result;  
+        
+        if (userScore.textContent === "5" || computerScore.textContent === "5") {
+            const modal = document.querySelector('.modal');
+            const modalResult = document.querySelector('.modal-result');
+            modal.classList.add('active');
+            modalResult.innerHTML = getOverallResult(userScore.textContent, computerScore.textContent);
+        }
     });
 });
