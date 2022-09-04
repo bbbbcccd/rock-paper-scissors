@@ -50,7 +50,8 @@ function getWinner(result) {
     }
 }
 
-function updateScore(winner) {
+function updateScore(result) {
+    const winner = getWinner(result);
     let container;
     if (winner == "computer") {
         container = document.querySelector("#com-score");
@@ -59,23 +60,42 @@ function updateScore(winner) {
     } else {
         return;
     }   
-    let currentScore = parseInt(container.textContent);
-    container.textContent = currentScore + 1;
+    container.textContent = parseInt(container.textContent) + 1;
 }
- 
-// Event listener for the 3 buttons
-// Plays round depending on which button user chooses
-const rpsButtons = document.querySelectorAll('.options button');
-rpsButtons.forEach(button => {
-    button.addEventListener("click", (e) => {
-        let result = playRound(e.target.id, getComputerChoice());
-        let winner = getWinner(result);
-        updateScore(winner);
-        document.getElementById("result").textContent = result;
 
-        gameOver();
-    })
-});
+//Updates with the image of choice by player (user or computer) 
+function updateImg(player, choice) {
+    let container;
+    if (player === "user") {
+        container = document.getElementById('user-image');
+    } else if (player == "computer") {
+        container = document.getElementById('com-image');
+    } else {
+        console.log("invalid player");
+    }
+    if (choice === "Rock") {
+        container.setAttribute('src', "./images/rock.png");
+    } else if (choice === "Paper") {
+        container.setAttribute('src', "./images/paper.png");
+    } else if (choice === "Scissors") {
+        container.setAttribute('src', "./images/scissors.png");
+    } else {
+        console.log("Invalid choice") ;
+    }
+}
+
+function updateUserImg(choice) {
+    updateImg("user", choice);
+}
+
+function updateComputerImg(choice) {
+    updateImg("computer", choice);
+}
+
+function updateRoundResult(result) {
+    document.getElementById("result").textContent = result;
+}
+
 
 //Game is over when either user or computer reaches 5 points
 // Activates modal if the game is over
@@ -90,3 +110,21 @@ function gameOver() {
         modalResult.innerHTML = getOverallResult(userScore, computerScore)
     }
 }
+
+// Event listener for the 3 buttons
+// Plays round depending on which button user chooses
+const rpsButtons = document.querySelectorAll('.options button');
+rpsButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        const userChoice = e.target.id;
+        const computerChoice = getComputerChoice();
+        const roundResult = playRound(userChoice, computerChoice);
+
+        updateUserImg(userChoice);
+        updateComputerImg(computerChoice);
+        updateScore(roundResult);
+        updateRoundResult(roundResult);
+
+        gameOver();
+    })
+});
