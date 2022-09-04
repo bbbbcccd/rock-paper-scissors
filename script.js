@@ -66,20 +66,27 @@ function updateScore(winner) {
 // Event listener for the 3 buttons
 // Plays round depending on which button user chooses
 const rpsButtons = document.querySelectorAll('.options button');
-const userScore = document.getElementById('user-score');
-const computerScore = document.getElementById('com-score');
 rpsButtons.forEach(button => {
     button.addEventListener("click", (e) => {
         let result = playRound(e.target.id, getComputerChoice());
         let winner = getWinner(result);
         updateScore(winner);
-        document.getElementById("result").textContent = result;  
-        
-        if (userScore.textContent === "5" || computerScore.textContent === "5") {
-            const modal = document.querySelector('.modal');
-            const modalResult = document.querySelector('.modal-result');
-            modal.classList.add('active');
-            modalResult.innerHTML = getOverallResult(userScore.textContent, computerScore.textContent);
-        }
-    });
+        document.getElementById("result").textContent = result;
+
+        gameOver();
+    })
 });
+
+//Game is over when either user or computer reaches 5 points
+// Activates modal if the game is over
+function gameOver() {
+    const userScore = document.getElementById('user-score').textContent;
+    const computerScore = document.getElementById('com-score').textContent;
+
+    if (userScore === "5" || computerScore === "5") {
+        const modal = document.querySelector('.modal');
+        const modalResult = document.querySelector('.modal-result');
+        modal.classList.add('active');
+        modalResult.innerHTML = getOverallResult(userScore, computerScore)
+    }
+}
